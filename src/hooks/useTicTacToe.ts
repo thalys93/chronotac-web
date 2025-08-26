@@ -57,7 +57,7 @@ export function useTicTacToe(): [GameState, (squareIndex: number) => void, () =>
 
   const makeMove = useCallback((squareIndex: number) => {
     if (board[squareIndex] || isGameOver) {
-      return; // Square already occupied or game over
+      return;
     }
 
     const newBoard = [...board];

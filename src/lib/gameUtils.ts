@@ -1,7 +1,6 @@
 import { GameState } from '@/hooks/useTicTacToe';
 import { GameInput } from '@/types';
 
-// Converter o board do formato linear para matriz 3x3
 export function boardToMatrix(board: (string | null)[]): string[][] {
     const matrix: string[][] = [];
     for (let i = 0; i < 3; i++) {
@@ -14,7 +13,6 @@ export function boardToMatrix(board: (string | null)[]): string[][] {
     return matrix;
 }
 
-// Converter GameState para GameInput
 export function gameStateToInput(gameState: GameState): GameInput {
     return {
         board: boardToMatrix(gameState.board),

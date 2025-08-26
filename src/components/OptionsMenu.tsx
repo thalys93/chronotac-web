@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,13 +10,14 @@ import {
     DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { Button } from './ui/button';
-import { Menu, Sun, Moon, ExternalLink, User, Palette, List, Link } from 'lucide-react';
+import { Menu, Sun, Moon, ExternalLink, User, Palette, List, Link, } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 function OptionsMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const { isOnline, connectionStatus } = useOnlineStatus();
 
     useEffect(() => {
         setMounted(true);
@@ -27,7 +29,7 @@ function OptionsMenu() {
 
     const handlePortfolioClick = () => {
         window.open('https://portifolio-luis-thalys.web.app/', '_blank');
-    };
+    };    
 
     if (!mounted) {
         return null;
@@ -51,11 +53,11 @@ function OptionsMenu() {
                 className="w-48 sm:w-56 bg-background/95 backdrop-blur-sm border-border/50 shadow-xl animate-in slide-in-from-top-2 duration-300"
                 sideOffset={8}
             >
-                
                 <DropdownMenuLabel className="text-xs sm:text-sm font-medium text-muted-foreground px-3 py-2 select-none">
                     Opções
                 </DropdownMenuLabel>
 
+                <DropdownMenuSeparator className="bg-border/50" />
                 <NavLink to="/history" className="w-full">
                     <DropdownMenuItem className="px-3 py-2 cursor-pointer hover:bg-accent/50 transition-colors duration-200 group">
                         <div className="flex items-center gap-2 sm:gap-3 w-full">
@@ -65,7 +67,7 @@ function OptionsMenu() {
                         </div>
                     </DropdownMenuItem>
                 </NavLink>
-
+                
                 <DropdownMenuSeparator className="bg-border/50" />
 
                 <DropdownMenuItem
@@ -86,7 +88,7 @@ function OptionsMenu() {
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator className="bg-border/50" />
-                
+
                 <DropdownMenuItem
                     onClick={handlePortfolioClick}
                     className="px-3 py-2 cursor-pointer hover:bg-accent/50 transition-colors duration-200 group"
@@ -98,7 +100,6 @@ function OptionsMenu() {
                         <ExternalLink className="h-2 w-2 sm:h-3 sm:w-3 ml-auto text-muted-foreground group-hover:text-accent-foreground transition-all duration-200 group-hover:translate-x-0.5" />
                     </div>
                 </DropdownMenuItem>
-                
             </DropdownMenuContent>
         </DropdownMenu>
     );
