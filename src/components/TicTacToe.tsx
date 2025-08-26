@@ -1,20 +1,22 @@
 import { memo } from 'react';
 import { GameBoard } from './GameBoard';
-import { GameStatus } from './GameStatus';
 import { Button } from '@/components/ui/button';
-import { useTicTacToe } from '@/hooks/useTicTacToe';
 import { RotateCcw } from 'lucide-react';
+import { GameState } from '@/hooks/useTicTacToe';
 
-export const TicTacToe = memo(() => {
-  const [gameState, makeMove, resetGame] = useTicTacToe();
+interface TicTacToeProps {
+  gameState: GameState;
+  onSquareClick: (squareIndex: number) => void;
+  onResetGame: () => void;
+}
 
+export const TicTacToe = memo(({ gameState, onSquareClick, onResetGame }: TicTacToeProps) => {
   return (
     <div className="w-full max-w-lg mx-auto space-y-6 sm:space-y-8 animate-fade-in">                  
-      {/* <GameStatus gameState={gameState} />         */}
-      <GameBoard gameState={gameState} onSquareClick={makeMove} />      
+      <GameBoard gameState={gameState} onSquareClick={onSquareClick} />      
       <div className="text-center">
         <Button
-          onClick={resetGame}
+          onClick={onResetGame}
           variant="outline"
           size="lg"
           className="bg-gradient-accent text-accent-foreground border-accent/20 hover:bg-gradient-primary hover:border-primary/20 hover:scale-105 hover:shadow-glow transition-all duration-300 px-6 py-3 rounded-xl font-medium"

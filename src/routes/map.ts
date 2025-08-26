@@ -1,4 +1,5 @@
 import HomePage from "@/subdomains/app/pages/Home/HomePage";
+import HistoryPage from "@/subdomains/app/pages/History/HistoryPage";
 import NotFoundPage from "@/subdomains/app/pages/NotFound/NotFoundPage";
 import { ReactElement } from "react";
 
@@ -17,6 +18,7 @@ export const AppRoutes: RoutesGroup = {
     prefix: "",
     public: [
         { path: "", element: HomePage },
+        { path: "history", element: HistoryPage },
         { path: "*", element: NotFoundPage },
     ]
 };
