@@ -1,7 +1,7 @@
 import { Game, GameInput, GamesListResponse, ApiError } from '@/types';
 
 export class ApiService {
-    private static readonly BASE_URL = 'http://localhost:3333/api';
+    private static readonly BASE_URL = 'https://chronotac-api.onrender.com/api';
     private static readonly OFFLINE_KEY = 'chronotac_offline_games';
     private static readonly SYNC_QUEUE_KEY = 'chronotac_sync_queue';
 
